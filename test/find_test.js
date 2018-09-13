@@ -5,12 +5,13 @@ const MarioChar = require('../models/mariochar');
 describe('Finding records', () => {
     // create tests
 
+    var char;
     // Changing up the code a bit
     // in order to find a record, we must make one
     // in connect.js, we drop the collection before each test
     // so we put this here to make sure we are adding something to the collection before our test runs
     beforeEach(done => {
-        const char = new MarioChar({
+        char = new MarioChar({
             name: 'Mario'
         });
 
@@ -29,6 +30,15 @@ describe('Finding records', () => {
             name: 'Mario'
         }).then(result => {
             assert(result.name === 'Mario');
+            done();
+        });
+    });
+
+    it('Finds 1 record by id from the database', done => {
+        MarioChar.findOne({
+            _id: char._id
+        }).then(result => {
+            assert(result._id.toString() === char._id.toString());
             done();
         });
     });
