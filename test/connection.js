@@ -14,7 +14,7 @@ before(done => {
   mongoose.connection
     .once("open", () => {
       console.log("Connection has been made, now make fireworks...");
-      done();
+      done(); // call done fn when this is done
     })
     .on("error", error => {
       console.log(error);
