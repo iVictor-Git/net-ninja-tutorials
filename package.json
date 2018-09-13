@@ -1,0 +1,23 @@
+{
+  "name": "net-ninja-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iVictor-Git/net-ninja-tutorials.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iVictor-Git/net-ninja-tutorials/issues"
+  },
+  "homepage": "https://github.com/iVictor-Git/net-ninja-tutorials#readme",
+  "dependencies": {
+    "mongoose": "^5.2.14"
+  }
+}
