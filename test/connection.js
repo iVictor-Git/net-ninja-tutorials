@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+// ES6 Promises
+mongoose.Promise = global.Promise;
+
 // connect to mongodb
 mongoose.connect("mongodb://localhost/testaroo");
 
