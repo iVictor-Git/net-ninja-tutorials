@@ -12,7 +12,8 @@ describe('Updating records', () => {
     // so we put this here to make sure we are adding something to the collection before our test runs
     beforeEach(done => {
         char = new MarioChar({
-            name: 'Mario'
+            name: 'Mario',
+            weight: 50
         });
 
         // save is async
@@ -36,6 +37,22 @@ describe('Updating records', () => {
         ).then(() => {
             MarioChar.findById({ _id: char._id }).then(result => {
                 assert(result.name === 'Luigi');
+                done();
+            });
+        });
+    });
+
+    it('Increments the weight by 1', done => {
+        MarioChar.updateMany(
+            {},
+            {
+                $inc: {
+                    weight: 1
+                }
+            }
+        ).then(() => {
+            MarioChar.findOne({ name: 'Mario' }).then(result => {
+                assert(result.weight === 51);
                 done();
             });
         });
