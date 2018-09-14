@@ -2,6 +2,13 @@ const graphql = require('graphql');
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
+// dummy data
+const books = [
+    { name: 'Name of the Wind', genre: 'Fantasy', id: '1' },
+    { name: 'The Final Empire', genre: 'Fantasy', id: '2' },
+    { name: 'The Long Earth', genre: 'Sci-Fi', id: '3' }
+];
+
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
@@ -11,6 +18,7 @@ const BookType = new GraphQLObjectType({
     })
 });
 
+// RootQuery defines how we can jump to the graph to query data
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
