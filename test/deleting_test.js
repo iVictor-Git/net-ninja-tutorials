@@ -26,7 +26,7 @@ describe('Deleting records', () => {
 
     // it creates a single test
     it('Delete 1 record from the database', done => {
-        MarioChar.findOneAndRemove({
+        MarioChar.findOneAndDelete({
             name: 'Mario'
         })
             .then(() => {
