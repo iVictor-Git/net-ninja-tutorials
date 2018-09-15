@@ -5,6 +5,15 @@ const schema = require('./schema/schema');
 const app = express();
 const mongoose = require('mongoose');
 
+mongoose.connect(
+    process.env.DB_URI,
+    { useNewUrlParser: true }
+);
+
+mongoose.connection.once('open', () => {
+    console.log('connected to database');
+});
+
 // set middleware
 app.use(
     '/graphql',
