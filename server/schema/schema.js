@@ -25,6 +25,7 @@ const BookType = new GraphQLObjectType({
                 // parent is the Book props
                 // name, genre, id, authorId
                 // return _.find(authors, { id: parent.authorId });
+                return Author.findById(parent.authorId);
             }
         }
     })
@@ -42,6 +43,7 @@ const AuthorType = new GraphQLObjectType({
                 // return _.filter(books, {
                 //     authorId: parent.id
                 // });
+                return Book.find({ authorId: parent.authorId });
             }
         }
     })
@@ -57,11 +59,27 @@ const Mutation = new GraphQLObjectType({
                 age: { type: GraphQLInt }
             },
             resolve(parent, args) {
-                let author = new Author({
+                const author = new Author({
                     name: args.name,
                     age: args.age
                 });
                 return author.save();
+            }
+        },
+        addBook: {
+            type: BookType,
+            args: {
+                name: { type: GraphQLString },
+                genre: { type: GraphQLString },
+                authorId: { type: GraphQLID }
+            },
+            resolve(parent, args) {
+                const book = new Book({
+                    name: args.name,
+                    genre: args.genre,
+                    authorId: args.authorId
+                });
+                return book.save();
             }
         }
     }
@@ -77,6 +95,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 // code to get data from db / other source
                 // return _.find(books, { id: args.id });
+                return Book.findById(args.id);
             }
         },
         author: {
@@ -84,18 +103,21 @@ const RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 // return _.find(authors, { id: args.id });
+                return Author.findById(args.id);
             }
         },
         books: {
             type: GraphQLList(BookType),
             resolve(parent, args) {
                 // return books;
+                return Book.find({});
             }
         },
         authors: {
             type: GraphQLList(AuthorType),
             resolve(parent, args) {
                 // return authors;
+                return Author.find({});
             }
         }
     }
