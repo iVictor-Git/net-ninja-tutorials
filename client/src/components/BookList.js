@@ -9,7 +9,7 @@ class BookList extends Component {
       return <div>Loading books...</div>;
     }
     return data.books.map(book => {
-      return <li id={book.id}>{book.name}</li>;
+      return <li key={book.id}>{book.name}</li>;
     });
   };
   render() {
