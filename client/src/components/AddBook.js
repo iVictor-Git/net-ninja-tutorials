@@ -27,7 +27,7 @@ class AddBook extends Component {
 
   submitForm = event => {
     event.preventDefault();
-    console.log(this.state);
+    this.props.addBookMutation();
   };
 
   render() {
