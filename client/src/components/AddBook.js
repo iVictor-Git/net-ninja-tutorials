@@ -27,7 +27,14 @@ class AddBook extends Component {
 
   submitForm = event => {
     event.preventDefault();
-    this.props.addBookMutation();
+    console.log(this.props);
+    this.props.addBookMutation({
+      variables: {
+        name: this.state.name,
+        genre: this.state.genre,
+        authorId: this.state.authorId,
+      },
+    });
   };
 
   render() {
@@ -74,5 +81,5 @@ class AddBook extends Component {
 
 export default compose(
   graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
-  graphql(addBookMutation, { name: 'getBookMutation' }),
+  graphql(addBookMutation, { name: 'addBookMutation' }),
 )(AddBook);
